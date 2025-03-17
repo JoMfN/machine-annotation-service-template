@@ -1,7 +1,7 @@
 # Machine Annotation Service Template
 Thank you for your interest in developing Machine Annotation Services (MASs) for DiSSCo!
 
-This repository contains Boilerplate code to facilitate development of MASs. For more information, see our wiki on [information for MAS developers](https://github.com/DiSSCo/dissco-developers-documentation/wiki/Information-for-Machine-Annotation-Service-(MAS)-Developers)
+This repository contains Boilerplate code to facilitate development of MASs. For more information, see our [MAS Developers Guide](https://dissco.github.io/mas-developers-documentation/)
 You can find example MASs [on our GitHub](https://github.com/DiSSCo/demo-enrichment-service-image/)
 
 
@@ -36,8 +36,8 @@ The following table contains references to relevant schemas and a human-readable
 
 | Resource                   | JSON Schema                                                                                                      | Terms Site                                                                                                           |
 |----------------------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| Digital Specimen           | [Schema](https://schemas.dissco.tech/schemas/fdo-type/digital-specimen/0.3.0/digital-specimen.json)              | [Terms](https://dev.terms.dissco.tech/digital-specimen-terms)                                                        |
-| Digital Media              | [Schema](https://schemas.dissco.tech/schemas/fdo-type/digital-media/0.3.0/digital-media.json)                    | [Terms](https://dev.terms.dissco.tech/digital-media-terms)                                                           |
-| Annotation Event to DiSSCo | [Schema](https://schemas.dissco.tech/schemas/developer-schema/annotation/0.3.0/annotation-processing-event.json) | [Terms](https://dev.terms.dissco.tech/annotation-terms) (Note: contains terms computed by DiSSCo as well as the MAS) |
+| Digital Specimen           | [Schema](https://schemas.dissco.tech/schemas/fdo-type/digital-specimen/0.4.0/digital-specimen.json)              | [Terms](https://terms.dissco.tech/digital-specimen-terms)                                                            |
+| Digital Media              | [Schema](https://schemas.dissco.tech/schemas/fdo-type/digital-media/0.4.0/digital-media.json)                    | [Terms](https://terms.dissco.tech/digital-media-terms)                                                               |
+| Annotation Event to DiSSCo | [Schema](https://schemas.dissco.tech/schemas/developer-schema/annotation/0.4.0/annotation-processing-event.json) | [Terms](https://terms.dissco.tech/annotation-terms) (Note: contains terms computed by DiSSCo as well as the MAS) |
 
 The resulting message back to DiSSCo must comply to the `Annotation Event to DiSSCo` schema.
