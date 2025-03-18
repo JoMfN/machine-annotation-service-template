@@ -41,7 +41,7 @@ def start_kafka() -> None:
         ods.mark_job_as_running(job_id=json_value.get("jobId"))
         digital_object = json_value.get("object")
         try:
-            annotations = map_result_to_annotation(digital_object)
+            annotations = build_annotations(digital_object)
             event = ods.map_to_annotation_event(annotations, json_value["jobId"])
             logging.info(f"Publishing annotation event: {json.dumps(event)}")
             publish_annotation_event(event, producer)
@@ -72,7 +72,7 @@ def publish_annotation_event(
     producer.send(os.environ.get("KAFKA_PRODUCER_TOPIC"), annotation_event)
 
 
-def map_result_to_annotation(digital_object: Dict[str, Any]) -> List[Dict[str, Any]]:
+def build_annotations(digital_object: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Given a target object, computes a result and maps the result to an openDS annotation
     :param digital_object: the target object of the annotation
@@ -215,3 +215,24 @@ def run_api_call(timestamp: str, query_string: str) -> List[str]:
     One annotation can be created for each oa:value computed in this step
     """
     return [assertion, entity_relationship, json.dumps(response_json)]
+
+
+def run_local(specimen_id: str):
+    """
+    Runs script locally. Demonstrates using 2 example targets: a specimen and a media id
+    :param specimen_id: A specimen ID from DiSSCo Sandbox Environment https://sandbox.dissco.tech/search
+    Example: SANDBOX/KMP-FZ6-S2K
+    :return: Return nothing but will log the result
+    """
+    digital_specimen = (
+        requests.get(
+            f"https://sandbox.dissco.tech/api/digital-specimen/v1/{specimen_id}"
+        )
+        .json()
+        .get("data")
+        .get("attributes")
+    )
+
+    specimen_annotations = build_annotations(digital_specimen)
+    event = ods.map_to_annotation_event(specimen_annotations, "Some job ID")
+    logging.info(f"created annotation event: {json.dumps(event)}")
