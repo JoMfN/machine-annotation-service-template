@@ -219,7 +219,7 @@ def run_api_call(timestamp: str, query_string: str) -> List[str]:
 
 def run_local(specimen_id: str):
     """
-    Runs script locally. Demonstrates using 2 example targets: a specimen and a media id
+    Runs script locally. Demonstrates using a specimen target
     :param specimen_id: A specimen ID from DiSSCo Sandbox Environment https://sandbox.dissco.tech/search
     Example: SANDBOX/KMP-FZ6-S2K
     :return: Return nothing but will log the result

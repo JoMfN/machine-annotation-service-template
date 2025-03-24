@@ -1,7 +1,7 @@
 # Machine Annotation Service Template
 Thank you for your interest in developing Machine Annotation Services (MASs) for DiSSCo!
 
-This repository contains Boilerplate code to facilitate development of MASs. For more information, see our [MAS Developers Guide](https://dissco.github.io/mas-developers-documentation/)
+This repository contains template code to facilitate development of MASs. For more information, see our [MAS Developers Guide](https://dissco.github.io/mas-developers-documentation/)
 You can find example MASs [on our GitHub](https://github.com/DiSSCo/demo-enrichment-service-image/)
 
 

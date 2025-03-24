@@ -148,7 +148,6 @@ def build_batch_metadata(
 def run_api_call(query_string: str) -> str:
     """
     Run API call or performs some computation on the target object
-    standard. This may be a digital specimen or digital media object.
     :param query_string: Location of request
     :return: Value of the annotation (maps to oa:value)
     :raises Request exception
