@@ -97,7 +97,7 @@ def build_annotations(digital_object: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     It is up to the developer to determine the most appropriate selector. A Class 
     Selector is used if the annotation targets a whole class (or entire specimen), 
-    a Field Selector is used if the annotation targets a specific field, and a Fragment
+    a Term Selector is used if the annotation targets a specific term, and a Fragment
     Selector is used if the annotation targets a Region of Interest (media only). 
     Templates for all 3 selectors are provided in the data_model.py library
     
@@ -109,9 +109,9 @@ def build_annotations(digital_object: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     selector_assertion = ods.build_class_selector("$['ods:hasAssertions'][0]")
     selector_entity_relationship = ods.build_class_selector(
-        "$['ods:hasEntityRelationship'][0]"
+        "$['ods:hasEntityRelationships'][0]"
     )
-    selector_field = ods.build_term_selector("$['ods:topicDomain']")
+    selector_term = ods.build_term_selector("$['ods:topicDomain']")
 
     # Make an annotation for each oa:value produced
     annotations.append(
@@ -141,7 +141,7 @@ def build_annotations(digital_object: Dict[str, Any]) -> List[Dict[str, Any]]:
             timestamp,
             Motivation.COMMENTING,
             oa_values[2],
-            selector_field,
+            selector_term,
             digital_object[ods.DCTERMS_ID],
             digital_object[ods.ODS_TYPE],
             query_string,
@@ -157,7 +157,7 @@ def built_no_match_annotation(
     """
     If no values are produced, it is best practice to inform the user that the MAS did not produce an annotation
     The motivation for a "no-annotation annotation" should be oa:commenting
-    The selector MUST specify a field that exists and is nonnull in the target
+    The selector MUST specify a term that exists and is nonnull in the target
     """
     return [
         ods.map_to_annotation(

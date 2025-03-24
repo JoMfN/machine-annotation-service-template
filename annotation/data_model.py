@@ -8,6 +8,7 @@ from motivation import Motivation
 ODS_TYPE = "ods:fdoType"
 AT_TYPE = "@type"
 DCTERMS_ID = "dcterms:identifier"
+DCTERMS_CREATOR = "dcterms:creator"
 AT_ID = "@id"
 MAS_ID = os.environ.get("MAS_ID")
 MAS_NAME = os.environ.get("MAS_NAME")
@@ -55,7 +56,7 @@ def build_agent() -> Dict[str, Any]:
                 AT_ID: f"https://hdl.handle.net/{MAS_ID}",
                 AT_TYPE: "ods:Identifier",
                 "dcterms:type": "Handle",
-                "dcterms:title": "HANDLE",
+                "dcterms:title": "Handle",
                 DCTERMS_ID: f"https://hdl.handle.net/{MAS_ID}",
                 "ods:isPartOfLabel": False,
                 "ods:gupriLevel": "GloballyUniqueStablePersistentResolvableFDOCompliant",
@@ -86,7 +87,7 @@ def map_to_assertion(
         "dwc:measurementDeterminedDate": timestamp,
         "dwc:measurementType": measurement_type,
         "dwc:measurementValue": measurement_value,
-        "ods:hasAgents": [build_agent()],
+        DCTERMS_CREATOR: [build_agent()],
         "dwc:measurementUnit": measurement_unit,
         "dwc:measurementMethod": assertion_protocol,
     }
@@ -108,7 +109,7 @@ def map_to_entity_relationship(
         "dwc:relatedResourceID": resource_id,
         "ods:relatedResourceURI": resource_id,
         "dwc:relationshipEstablishedDate": timestamp,
-        "ods:hasAgents": [build_agent()],
+        DCTERMS_CREATOR: [build_agent()],
     }
 
 
@@ -163,7 +164,7 @@ def map_to_annotation(
     annotation = {
         AT_TYPE: "ods:Annotation",
         "oa:motivation": motivation.value,
-        "dcterms:creator": build_agent(),
+        DCTERMS_CREATOR: build_agent(),
         "dcterms:created": timestamp,
         "oa:hasTarget": {
             DCTERMS_ID: target_id,
@@ -196,10 +197,10 @@ def build_class_selector(oa_class: str) -> Dict[str, str]:
 def build_term_selector(ods_term: str) -> Dict[str, str]:
     """
     A selector for an individual Term
-    :param ods_term: The full jsonPath of the field being annotated (in block notation)
-    :return: field selector object
+    :param ods_term: The full jsonPath of the term being annotated (in block notation)
+    :return: term selector object
     """
-    return {AT_TYPE: "ods:FieldSelector", "ods:term": ods_term}
+    return {AT_TYPE: "ods:TermSelector", "ods:term": ods_term}
 
 
 def build_fragment_selector(
