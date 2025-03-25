@@ -3,7 +3,7 @@ from typing import Dict, Any, List
 import os
 import requests
 from kafka import KafkaProducer
-from motivation import Motivation
+from annotation.motivation import Motivation
 
 ODS_TYPE = "ods:fdoType"
 AT_TYPE = "@type"
