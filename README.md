@@ -8,6 +8,36 @@ You can find example MASs [on our GitHub](https://github.com/DiSSCo/demo-enrichm
 ## Getting Help
 Creating issues in this repository is the best way to receive a quick response from the DiSSCo development team.
 
+## Create Conda environment with ontogpt installed
+
+### 0. Install MiniConda
+
+```
+    curl -sL \
+      "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" > \
+      "Miniconda3.sh"
+```
+
+### 1. Install OntoGPT
+
+```
+pip install ontogpt ontogpt[web]
+```
+
+### 2. Prepare environment
+
+```
+source .env
+```
+
+or 
+
+``` 
+export PYTHONPATH=.
+```
+
+
+
 ## Using This Repository
 This repository is intended to be forked and used as a template for the development of MASs. 
 The `annotation` package contains code that will format resulting calculations to the openDS annotation model.
