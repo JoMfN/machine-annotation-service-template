@@ -8,7 +8,7 @@ from annotation.motivation import Motivation
 import requests
 from kafka import KafkaConsumer, KafkaProducer
 
-from annotation import data_model as ods
+from annotation.data_model import data_model as ods
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
